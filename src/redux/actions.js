@@ -4,7 +4,6 @@ export function getData (name) {
         .then(res => res.json())
         .then(data => {
             dispatch(getMovies(data.Search))
-            // console.log(data.Search)
         })
     }
 }
@@ -12,6 +11,13 @@ export function getData (name) {
 const getMovies = (payload) => {
     return {
         type: 'GET_MOVIES',
+        payload,
+    }
+}
+
+export const getIdMovies = (payload) => {
+    return {
+        type:'ADD_LIST_PAGE',
         payload,
     }
 }
