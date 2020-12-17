@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import { getData } from './../../redux/actions';
 import './SearchBox.css';
 
 class SearchBox extends Component {
     state = {
-        searchLine: ''
+        searchLine: '',
     }
     searchLineChangeHandler = (e) => {
         this.setState({ searchLine: e.target.value });
@@ -12,8 +14,7 @@ class SearchBox extends Component {
         e.preventDefault();
     }
     render() {
-        const { searchLine } = this.state;
-
+        const { searchLine } = this.state;     
         return (
             <div className="search-box">
                 <form className="search-box__form" onSubmit={this.searchBoxSubmitHandler}>
@@ -31,6 +32,7 @@ class SearchBox extends Component {
                         type="submit"
                         className="search-box__form-submit"
                         disabled={!searchLine}
+                        onClick={() =>this.props.getData(searchLine)}
                     >
                         Искать
                     </button>
@@ -39,5 +41,9 @@ class SearchBox extends Component {
         );
     }
 }
+const mapDispatchToProps = dispatch => ({
+    getData: (searchLine) => dispatch(getData(searchLine))
+})
+
  
-export default SearchBox;
+export default connect (null, mapDispatchToProps)(SearchBox);
