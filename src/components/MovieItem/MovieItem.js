@@ -4,9 +4,8 @@ import { getIdMovies } from './../../redux/actions'
 import './MovieItem.css';
 
 class MovieItem extends Component {
-    
     render() {
-        const { Title, Year, Poster, imdbID } = this.props;
+        const { Title, Year, Poster, imdbID, disabled} = this.props;
         return (
             <article className="movie-item">
                 <img className="movie-item__poster" src={Poster} alt={Title} />
@@ -15,11 +14,13 @@ class MovieItem extends Component {
                     <button 
                     type="button" 
                     className="movie-item__add-button"
-                    onClick={() => this.props.dispatch(getIdMovies(imdbID))}>Добавить в список</button>
+                    onClick={() => this.props.dispatch(getIdMovies(imdbID))}
+                    disabled={disabled}
+                    >{disabled ? 'Добавлено' : 'Добавить в список'}</button>
                 </div>
             </article>
         );
     }
 }
  
-export default connect( state => ({movies: state.movies}))(MovieItem);
+export default connect( )(MovieItem);

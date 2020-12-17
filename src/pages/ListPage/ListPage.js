@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './ListPage.css';
 
 class ListPage extends Component {
@@ -18,7 +19,7 @@ class ListPage extends Component {
             <div className="list-page">
                 <h1 className="list-page__title">Мой список</h1>
                 <ul>
-                    {this.state.movies.map((item) => {
+                    {this.state.moviesList.map((item) => {
                         return (
                             <li key={item.imdbID}>
                                 <a href="https://www.imdb.com/title/tt0068646/" target="_blank">{item.title} ({item.year})</a>
@@ -31,4 +32,4 @@ class ListPage extends Component {
     }
 }
  
-export default ListPage;
+export default connect (state => ({moviesList: state.moviesList}))(ListPage);

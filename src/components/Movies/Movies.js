@@ -9,7 +9,7 @@ class Movies extends Component {
             <ul className="movies">
                 {this.props.movies.map((movie) => (
                     <li className="movies__item" key={movie.imdbID}>
-                        <MovieItem {...movie} />
+                        <MovieItem {...movie} disabled={this.props.moviesList.find(el => el.imdbID === movie.imdbID)}/>
                     </li>
                 ))}
             </ul>
@@ -17,4 +17,4 @@ class Movies extends Component {
     }
 }
  
-export default connect( state => ({movies: state.movies}))(Movies);
+export default connect( state => ({movies: state.movies, moviesList: state.moviesList}))(Movies);

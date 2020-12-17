@@ -21,3 +21,17 @@ export const getIdMovies = (payload) => {
         payload,
     }
 }
+
+export const deleteMovie = (payload) => {
+    return {
+        type:'DELETE_MOVIE',
+        payload,
+    }
+}
+
+export const changeTitleList = (payload) => {
+    return {
+        type:'CHANGE_TITLE_LIST',
+        payload,
+    }
+}
