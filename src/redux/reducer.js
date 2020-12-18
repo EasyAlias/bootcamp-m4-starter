@@ -16,7 +16,7 @@ export default function reducer (state = initialState, action) {
             return {...state, moviesList};
         }
         case 'GET_ERROR': {
-            return {...state, error: action.payload};
+            return {...state, error: "Введите правильное название фильма"};
         }
         case 'DELETE_MOVIE': {
             const myMoviesList = state.moviesList.filter(item => item.imdbID !== action.payload);
