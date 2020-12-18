@@ -7,6 +7,41 @@
     margin-bottom: 26px;
 }
 
+a{
+    color: #0b0906;
+    text-decoration: none;
+}
+
 .list-page ul li {
     font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.list-page__title {
+    background: #496DDB;
+    padding: 20px calc(50% - 500px) 10px;
+}
+
+.list-page__title_h1 {
+    font-family: 'Luckiest Guy', cursive;
+    color: white;
+    font-size: 45px;
+    margin-left: 40px;
+}
+
+.list__movie-item {
+    padding: 20px;
+    background-color: rgb(248, 205, 89, 0.6);
+    display: flex;
+}
+
+.list__movie-item__poster {
+    height: 150px;
+    margin-right: 21px;
+}
+
+.list__movie-item__title {
+    font-weight: 500;
+    font-size: 21px;
+    margin-bottom: 14px;
 }

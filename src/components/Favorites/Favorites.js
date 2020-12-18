@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {deleteMovie} from './../../redux/actions';
 import {changeTitleList} from './../../redux/actions';
-import { Route, Link } from 'react-router-dom';
-import ListPage from './../../pages/ListPage/ListPage';
-import store from './../../redux/store';
+import { Link } from 'react-router-dom';
 
 import './Favorites.css';
 
@@ -13,25 +11,34 @@ class Favorites extends Component {
     state = {
         title: 'Сохранить список',
         disabled: false,
+        link: '',
     }
 
-    clickHandler = event => {
-        if(event.target.innerText === 'Сохранить список') {
-            this.setState ({ 
-                title: <Link to='/list'className="button_href_list">Перейти к списку: {this.state.titleList}</Link>,
-                disabled: true,
+        clickHandler = (event) => {
+            if(event.target.innerText === 'Сохранить список') {
+                this.setState ({ 
+                    disabled: true,
+                })
+            fetch('https://acb-api.algoritmika.org/api/movies/list', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "title": this.props.titleList,
+                    "movies": this.props.moviesList.map(el => el.imdbID)
+                })  
             })
-        }
-    }
-
-    changeHandler = event =>{
-        store.dispatch({
-            titleList: event.target.value,
-        })
-    }
-
-    render() { 
-        console.log(this.props.titleList)    
+                .then(res => res.json())
+                .then(data => { 
+                    this.setState({ 
+                        link: data.id
+                    });
+                })  
+            } 
+        }     
+    
+    render() {   
         return (
             <div className="favorites">
                 <input type="text" 
@@ -51,14 +58,13 @@ class Favorites extends Component {
                         {item.Title} ({item.Year})</li>
                     )})}
                 </ul>
-                <button 
-                type="button" 
-                className="favorites__save"
-                onClick={this.clickHandler}>
-                    {this.state.title}</button>
-                <Route path="/list">
-                    <ListPage />
-                </Route>
+                {this.state.link ? (<Link to={`/list/${this.state.link}`}
+                        className="favorites__save button_href_list">Перейти к списку: {this.props.titleList}</Link>) :
+                        (<button 
+                        type="button" 
+                        className="favorites__save"
+                        onClick={this.clickHandler}>
+                            {this.state.title}</button>)}
             </div>
         );
     }
