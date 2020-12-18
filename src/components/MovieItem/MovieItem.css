@@ -30,9 +30,9 @@
     transition: all 0.2s linear;
 }
 
-@media screen and (min-width: 320px) and (max-width: 991px) {
+@media screen and (min-width: 320px) and (max-width: 995px) {
     .movie-item__title {
-        font-size: 17px;
+        font-size: 15px;
     }
     .movie-item__add-button {
         font-size: 12px;
