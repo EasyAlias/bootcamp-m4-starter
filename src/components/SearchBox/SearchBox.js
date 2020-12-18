@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { getData } from './../../redux/actions';
+import Search from './../../img/icon-search.png';
 import './SearchBox.css';
 
 class SearchBox extends Component {
@@ -36,14 +37,23 @@ class SearchBox extends Component {
                     >
                         Искать
                     </button>
+                        <img 
+                        className="search-box__form-submit__icon"
+                        disabled={!searchLine}
+                        onClick={() =>this.props.getData(searchLine)}
+                        src={Search} alt="search" 
+                        />
                 </form>
+                <p className="error">{this.props.error}</p>
             </div>
         );
     }
 }
+
+
 const mapDispatchToProps = dispatch => ({
     getData: (searchLine) => dispatch(getData(searchLine))
 })
 
  
-export default connect (null, mapDispatchToProps)(SearchBox);
+export default connect ((state) => ({error: state.error}), mapDispatchToProps)(SearchBox);

@@ -17,3 +17,28 @@
 .main-page__favorites {
     width: 35%;   
 }
+
+@media screen and (min-width: 320px) and (max-width: 991px) {
+    .main-page {
+        padding: 0;
+        width: 100vw;
+    }
+    .main-page__content {
+        padding: 20px;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .main-page__favorites {
+        width: 300px;   
+    }
+    .main-page__main-section {
+        margin: 30px auto;
+        padding-left: 0;
+        box-sizing: border-box;
+        width: 85%;
+        display: block;
+    }
+    .main-page__search-box {
+        margin: 0 auto 30px;
+    }
+}

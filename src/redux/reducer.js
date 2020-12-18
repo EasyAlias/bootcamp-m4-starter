@@ -2,6 +2,7 @@ const initialState = {
     movies: [],
     moviesList: [],
     titleList: '',
+    error: '',
     
 }
 
@@ -13,6 +14,9 @@ export default function reducer (state = initialState, action) {
             const movie = state.movies.find(item => item.imdbID === action.payload);
             let moviesList = [...state.moviesList, movie];
             return {...state, moviesList};
+        }
+        case 'GET_ERROR': {
+            return {...state, error: action.payload};
         }
         case 'DELETE_MOVIE': {
             const myMoviesList = state.moviesList.filter(item => item.imdbID !== action.payload);

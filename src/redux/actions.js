@@ -5,12 +5,22 @@ export function getData (name) {
         .then(data => {
             dispatch(getMovies(data.Search))
         })
+        .catch(err => {
+            dispatch(getError(err))
+        })
     }
 }
 
 const getMovies = (payload) => {
     return {
         type: 'GET_MOVIES',
+        payload,
+    }
+}
+
+const getError = (payload) => {
+    return {
+        type: 'GET_ERROR',
         payload,
     }
 }
